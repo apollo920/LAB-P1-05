@@ -1,0 +1,16 @@
+# Deep Learning
+torch
+torchvision
+
+# Hugging Face
+datasets
+transformers
+huggingface-hub
+tokenizers
+
+# Dependencias de suporte
+numpy
+tqdm
+filelock
+packaging
+requests

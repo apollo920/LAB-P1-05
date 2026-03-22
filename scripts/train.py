@@ -53,17 +53,14 @@ def train_one_epoch(model, loader, criterion, optimizer, pad_id, device):
         src_mask = build_src_mask(src, pad_id)
         tgt_mask = build_tgt_mask(tgt_input, pad_id)
 
-        # Forward pass
         logits = model(src, tgt_input, src_mask=src_mask, tgt_mask=tgt_mask)
 
         vocab_size = logits.size(-1)
         logits_flat     = logits.reshape(-1, vocab_size)
         tgt_target_flat = tgt_target.reshape(-1)
 
-        # Loss
         loss = criterion(logits_flat, tgt_target_flat)
 
-        # Backward
         optimizer.zero_grad()
         loss.backward()
         nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)
